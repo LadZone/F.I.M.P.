@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FIMP</string>
+    
+    <!-- Main Activity String values -->
+    <string name="add_arm">Add an arm</string>
+    
+    <!-- Fragment string values -->
+    <string name="cam_ip">Enter the IP address of your camera</string>
+    <string name="arm_nm">Pick a name you would like to call your arm</string>
+    <string name="arm_cl">Pick a color to represent your arm</string>
+
+
+</resources>
