@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">FIMP</string>
+
+    <!-- Toolbar String Values -->
+    <string name="settings_tool">Settings</string>
+    <string name="options_tools">Contact Us</string>
     
     <!-- Main Activity String values -->
     <string name="add_arm">Add an arm</string>
