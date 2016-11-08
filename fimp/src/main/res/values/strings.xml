@@ -13,5 +13,9 @@
     <string name="arm_nm">Pick a name you would like to call your arm</string>
     <string name="arm_cl">Pick a color to represent your arm</string>
 
+    <!-- String values for action bars -->
+    <string name="profile">F.I.M.P.</string>
+
+
 
 </resources>
