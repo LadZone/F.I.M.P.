@@ -25,6 +25,9 @@
     <string name="register">Register User</string>
     <string name="logAct">Already a user? Login Here!</string>
     <string name="noMatch">Passwords do not match, please try again.</string>
+    <string name="error">An error occured! Please check your fields again.</string>
+    <string name="welcome">Bio</string>
+    <string name="userBio"></string>
 
     <string name="emptStr"></string>
 
@@ -32,6 +35,7 @@
     <!--String values for Login -->
     <string name="login">Login</string>
     <string name="regAct">Not a user? Register Here!</string>
+    <string name="noExist">Sorry, user does not seem to exist in our entries!</string>
 
 
 </resources>

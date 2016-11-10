@@ -2,6 +2,7 @@ package inc.fimp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,12 +24,21 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        getSupportActionBar().setTitle(R.string.profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String username = getIntent().getStringExtra("username");
-        TextView textView = (TextView) findViewById(R.id.tvFullName);
-        textView.setText(username);
+        CharSequence profile = getApplicationContext().getString(R.string.profile);
+
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(profile);
+
+        //getSupportActionBar().setTitle(R.string.profile);
+
+
+        //String name = getIntent().getStringExtra("name");
+        //TextView textView = (TextView) findViewById(R.id.tvFullName);
+        //textView.setText(name);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -44,10 +54,12 @@ public class UserActivity extends AppCompatActivity {
         int res_id = item.getItemId();
         if(res_id==R.id.action_contact)
         {
+            //just for testing purposes
             Toast.makeText(getApplicationContext(), "You selected Contacted us option", Toast.LENGTH_SHORT).show();
         }
 
         if(res_id==R.id.action_settings){
+            //just for testing purposes
             Toast.makeText(getApplicationContext(), "You selected Settings Option", Toast.LENGTH_SHORT).show();
         }
         if(res_id==android.R.id.home){ // linked with getSupportActionBar().setDisplayHomeAsUpEnabled();
@@ -67,8 +79,8 @@ public class UserActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
                 .setNegativeButton(android.R.string.no, null)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
