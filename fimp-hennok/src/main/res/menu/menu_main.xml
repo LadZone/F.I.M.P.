@@ -6,14 +6,13 @@
 
     <item
         android:id="@+id/action_settings"
-        android:title="@string/settings_tool"
-        android:icon="@drawable/ic_action_settings"
-        app:showAsAction="ifRoom"
+        android:title="Controller"
+        app:showAsAction="never"
         />
 
     <item
         android:id="@+id/action_contact"
-        android:title="@string/options_tools"
+        android:title="Camera"
         app:showAsAction="never"
         />
 
