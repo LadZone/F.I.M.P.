@@ -59,14 +59,28 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/welcome"/>
+                        android:text="Welcome To F.I.M.P."
+                        android:padding="12dp"
+                        android:layout_gravity="center_horizontal" />
 
-                    <TextView
-                        android:layout_width="match_parent"
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_controller"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:text="test"/>
+                        android:padding="12dp"
+                        android:text="Controller"/>
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/btn_camera"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:padding="12dp"
+                        android:text="Camera"/>
 
                 </LinearLayout>
 

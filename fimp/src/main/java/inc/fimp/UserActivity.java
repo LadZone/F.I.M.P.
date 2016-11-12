@@ -2,6 +2,7 @@ package inc.fimp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,13 +18,15 @@ import android.widget.Toast;
 
 public class UserActivity extends AppCompatActivity {
 
+    Button controller;
+    Button camera;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-
+        controller=(Button)findViewById(R.id.btn_controller);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,12 +36,16 @@ public class UserActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(profile);
 
-        //getSupportActionBar().setTitle(R.string.profile);
+        controller.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivity.this,JoystickActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-        //String name = getIntent().getStringExtra("name");
-        //TextView textView = (TextView) findViewById(R.id.tvFullName);
-        //textView.setText(name);
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -89,6 +96,7 @@ public class UserActivity extends AppCompatActivity {
                     }
                 }).create().show();
     }
+
 
     public void getInfo(){
 

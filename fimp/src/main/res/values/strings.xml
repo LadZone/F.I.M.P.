@@ -37,5 +37,13 @@
     <string name="regAct">Not a user? Register Here!</string>
     <string name="noExist">Sorry, user does not seem to exist in our entries!</string>
 
+    <!-- Strings for Joystick -->
+    <string name="claw_open">Claw Open</string>
+    <string name="claw_close">Claw Close</string>
+    <string name="servor1">Servor1: </string>
+    <string name="servor2">Servor2: </string>
+    <string name="servor3">Servor3: </string>
+    <string name="servor4">Servor4: </string>
+
 
 </resources>

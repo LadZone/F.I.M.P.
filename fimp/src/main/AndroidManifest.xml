@@ -8,12 +8,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Dark"
-            android:finishOnCloseSystemDialogs="true">
+            android:finishOnCloseSystemDialogs="true"
+            android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,10 +21,13 @@
         <activity
             android:name=".SignupActivity"
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.Dark"/>
+            android:theme="@style/AppTheme.Dark" />
         <activity
             android:name=".UserActivity"
-            android:finishOnCloseSystemDialogs="true" />
+            android:finishOnCloseSystemDialogs="true"
+            android:theme="@style/AppTheme.Dark" />
+        <activity android:name=".JoystickActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
