@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">FIMP</string>
+
+    <!-- Toolbar String Values -->
+    <string name="settings_tool">Paramètres</string>
+    <string name="options_tools">Contactez nous</string>
+    <string name="profile">F.I.M.P.</string>
+    <string name="logout">Se déconnecter</string>
+
+
+    <!-- String values for Register Screen -->
+
+    <string name="email">Email</string>
+    <string name="pass">Mot de passe</string>
+    <string name="register">S inscrire</string>
+    <string name="logAct">Déjà membre? Connectez-vous ici!</string>
+    <string name="error">Une erreur s est produite! Veuillez vérifier vos champs à nouveau.</string>
+    <string name="registeringBAR">Enregistrement...</string>
+
+    <!--String values for Login -->
+    <string name="login">S identifier</string>
+    <string name="regAct">Pas un utilisateur? Inscrivez-vous ici!</string>
+    <string name="noExist">Désolé, l utilisateur ne semble pas exister dans nos entrées!</string>
+    <string name="logingIn">Connexion ...</string>
+
+    <!-- String Values for UserActivity -->
+    <string name="welcome">Welcome</string>
+    <string name="joystick">JOYSTICK</string>
+    <string name="camera">CAMERA</string>
+
+    <!-- Strings for Joystick -->
+    <string name="claw_open">Claw Ouvert</string>
+    <string name="claw_close">Claw Fermer</string>
+    <string name="servor1">Servor1: </string>
+    <string name="servor2">Servor2: </string>
+    <string name="servor3">Servor3: </string>
+    <string name="servor4">Servor4: </string>
+
+
+</resources>
