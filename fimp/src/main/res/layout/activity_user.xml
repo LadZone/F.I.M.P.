@@ -18,9 +18,9 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="135dp"
+                android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/fimp"
+                android:src="@drawable/fimp_logo"
                 app:layout_collapseMode="parallax"/>
 
             <android.support.v7.widget.Toolbar
@@ -58,15 +58,20 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <TextView
+                    <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/welcome"/>
+                        android:layout_height="match_parent"
+                        android:text="@string/joystick"
+                        android:id="@+id/joystick"
+                        />
 
-                    <TextView
+                    <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="test"/>
+                        android:layout_height="match_parent"
+                        android:text="@string/camera"
+                        android:id="@+id/camera"
+                        />
+
 
                 </LinearLayout>
 

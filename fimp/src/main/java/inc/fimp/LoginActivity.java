@@ -2,6 +2,7 @@ package inc.fimp;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -12,25 +13,38 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
 public class LoginActivity extends AppCompatActivity {
 
-    DatabaseHelper helper = new DatabaseHelper(this);
-  //  private static final String TAG = "LoginActivity";
-  //  private static final int REQUEST_SIGNUP = 0;
-
-    @Bind(R.id.input_uname) EditText _userName;
+    @Bind(R.id.input_email) EditText _emailText;
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
 
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if(firebaseAuth.getCurrentUser() != null){
+            //start profile activity
+            Intent i = new Intent(this, UserActivity.class);
+            startActivity(i);
+        }
+
 
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -57,21 +71,30 @@ public class LoginActivity extends AppCompatActivity {
 
         CharSequence noExist = getApplicationContext().getString(R.string.noExist);
 
-        String uname = _userName.getText().toString();
+        String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
         if (!validate()) {
             Toast.makeText(LoginActivity.this, "Incorrect Entries, Please review your enteries!", Toast.LENGTH_SHORT).show();
             return;
         }else{
-            String pword = helper.searchPass(uname);
-            if(password.equals(pword)){
-                Intent i = new Intent(this,UserActivity.class);
-                startActivity(i);
-            }
-            else{
-                Toast.makeText(LoginActivity.this, noExist, Toast.LENGTH_SHORT).show();
-            }
+
+            //if validiation is successful
+            //display progress dialog and start user activity
+            CharSequence logingIn = getApplicationContext().getString(R.string.logingIn);
+
+            firebaseAuth.signInWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if(task.isSuccessful()){
+                                //Start user activity
+                                Intent i = new Intent(LoginActivity.this, UserActivity.class);
+                                startActivity(i);
+                            }
+                        }
+                    });
         }
 
     }
@@ -79,14 +102,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String uname = _userName.getText().toString();
+        String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (uname.isEmpty() || uname.length()<5) {
-            _userName.setError("enter a valid user name");
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            _emailText.setError("enter a valid email address");
             valid = false;
         } else {
-            _userName.setError(null);
+            _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {

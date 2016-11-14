@@ -2,6 +2,7 @@ package inc.fimp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class UserActivity extends AppCompatActivity {
+
+    private FirebaseAuth firebaseAuth;
 
 
 
@@ -23,6 +30,14 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser()==null){
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -33,12 +48,16 @@ public class UserActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout)findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(profile);
 
-        //getSupportActionBar().setTitle(R.string.profile);
+        Button joystick = (Button) findViewById(R.id.joystick);
+        joystick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserActivity.this, JoystickActivity.class));
+            }
+        });
 
 
-        //String name = getIntent().getStringExtra("name");
-        //TextView textView = (TextView) findViewById(R.id.tvFullName);
-        //textView.setText(name);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -52,16 +71,19 @@ public class UserActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-        if(res_id==R.id.action_contact)
+        if(res_id==R.id.action_about)
         {
-            //just for testing purposes
-            Toast.makeText(getApplicationContext(), "You selected Contacted us option", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, AboutUs.class));
         }
 
-        if(res_id==R.id.action_settings){
-            //just for testing purposes
-            Toast.makeText(getApplicationContext(), "You selected Settings Option", Toast.LENGTH_SHORT).show();
+        if(res_id==R.id.action_logout)
+        {
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(UserActivity.this, LoginActivity.class));
+
         }
+
         if(res_id==android.R.id.home){ // linked with getSupportActionBar().setDisplayHomeAsUpEnabled();
             onBackPressed();
         }
@@ -69,6 +91,7 @@ public class UserActivity extends AppCompatActivity {
 
         return true;
     }
+
 
     /**
      * This function is responsible for asking the user to confirm
@@ -88,11 +111,11 @@ public class UserActivity extends AppCompatActivity {
                         UserActivity.super.onBackPressed();
                     }
                 }).create().show();
+
+       // firebaseAuth.signOut();
     }
 
-    public void getInfo(){
 
-    }
 
 
 

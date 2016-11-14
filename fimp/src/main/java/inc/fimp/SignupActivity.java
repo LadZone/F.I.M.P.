@@ -3,35 +3,46 @@ package inc.fimp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity
 {
-    DatabaseHelper helper = new DatabaseHelper(this);
-    //private static final String TAG = "SignupActivity";
+    //DatabaseHelper helper = new DatabaseHelper(this);
+    private static final String TAG = "SignupActivity";
 
-    @Bind(R.id.input_name) EditText _nameText;
+
     @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_uname) EditText _userName;
     @Bind(R.id.input_password) EditText _passwordText;
-    @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
     @Bind(R.id.btn_signup) Button _signupButton;
     @Bind(R.id.link_login) TextView _loginLink;
+
+    private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,69 +64,53 @@ public class SignupActivity extends AppCompatActivity
     }
 
     public void signup() {
-/*
-        final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
-                R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
-*/
-        String name = _nameText.getText().toString();
+
+
         String email = _emailText.getText().toString();
-        String uname = _userName.getText().toString();
         String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
 
         if (!validate()) {
             CharSequence error = getApplicationContext().getString(R.string.error);
             Toast.makeText(SignupActivity.this, error, Toast.LENGTH_SHORT).show();
             return;
         }else{
-            UserInformation ui = new UserInformation();
-            ui.setName(name);
-            ui.setEmail(email);
-            ui.setUname(uname);
-            ui.setPass(password);
 
-            helper.insertUser(ui);
+            //if validation is successful
+            //progress bar shown, for inhanced UI
+            CharSequence registering = getApplicationContext().getString(R.string.registeringBAR);
+            progressDialog.setMessage(registering);
+            progressDialog.show();
 
-            Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
+            firebaseAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                finish();
+                                Intent i = new Intent(SignupActivity.this, UserActivity.class);
+                                startActivity(i);
+                                Toast.makeText(SignupActivity.this, "Test: Registration Successful", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(SignupActivity.this, "Test: Registration Unsccessful", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
         }
     }
 
 
-
-
-    public boolean validate() {
+    public boolean validate(){
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
-        String user = _userName.getText().toString();
         String password = _passwordText.getText().toString();
-        String reEnterPassword = _reEnterPasswordText.getText().toString();
-
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
-            valid = false;
-        } else {
-            _nameText.setError(null);
-        }
-
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");
             valid = false;
         } else {
             _emailText.setError(null);
-        }
-
-        if (user.isEmpty() || user.length()<5) {
-            _userName.setError("Enter Valid Username Number");
-            valid = false;
-        } else {
-            _userName.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
@@ -125,12 +120,6 @@ public class SignupActivity extends AppCompatActivity
             _passwordText.setError(null);
         }
 
-        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
-            _reEnterPasswordText.setError("Password Do not match");
-            valid = false;
-        } else {
-            _reEnterPasswordText.setError(null);
-        }
 
         return valid;
     }
