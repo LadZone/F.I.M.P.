@@ -6,6 +6,7 @@
     <string name="options_tools">About Us</string>
     <string name="profile">F.I.M.P.</string>
     <string name="logout">Logout</string>
+    <string name="update_bio">Update Bio</string>
 
     <!-- String values for Register Screen -->
     <string name="email">Email</string>
@@ -22,9 +23,10 @@
     <string name="logingIn">Loging In...</string>
 
     <!-- String Values for UserActivity -->
-    <string name="welcome">Welcome</string>
-    <string name="joystick">Joystick</string>
-    <string name="camera">Camera</string>
+    <string name="Bio">Bio</string>
+
+    <string name="joystick">JOYSTICK</string>
+    <string name="camera">CAMERA</string>
 
     <!-- String Values for CamActivity -->
     <string name="connect">Connect</string>

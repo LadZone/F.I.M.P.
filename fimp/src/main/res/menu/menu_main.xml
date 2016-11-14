@@ -3,18 +3,6 @@
      xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <item
-        android:id="@+id/action_controller"
-        android:title="@string/joystick"
-        app:showAsAction="never"
-        />
-
-    <item
-        android:id="@+id/action_camera"
-        android:title="@string/camera"
-        app:showAsAction="never"
-        />
-
 
     <item
         android:id="@+id/action_about"
@@ -26,6 +14,11 @@
         android:id="@+id/action_logout"
         android:title="@string/logout"
         app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_update_bio"
+        android:title="@string/update_bio"
         />
 
 

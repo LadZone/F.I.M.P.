@@ -12,18 +12,21 @@ package inc.fimp;
  */
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,17 +93,6 @@ public class UserActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-
-        if(res_id==R.id.action_controller)
-        {
-            startActivity(new Intent(UserActivity.this, JoystickActivity.class));
-        }
-
-        if(res_id==R.id.action_camera)
-        {
-            startActivity(new Intent(UserActivity.this, CamActivity.class));
-        }
-
         if(res_id==R.id.action_about)
         {
             startActivity(new Intent(this, AboutUs.class));
@@ -111,6 +103,31 @@ public class UserActivity extends AppCompatActivity {
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(UserActivity.this, LoginActivity.class));
+
+        }
+
+        if(res_id==R.id.action_update_bio)
+        {
+            //will alow the user to add a bio
+            final  TextView userinputtext = (TextView) findViewById(R.id.userinputtext);
+            View view = (LayoutInflater.from(UserActivity.this)).inflate(R.layout.user_input, null);
+
+            AlertDialog.Builder alertBuilder = new AlertDialog.Builder(UserActivity.this);
+            alertBuilder.setView(view);
+            final EditText userInput = (EditText) view.findViewById(R.id.userinput);
+
+            alertBuilder.setCancelable(true)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            userinputtext.setText(userInput.getText());
+
+                        }
+                    });
+            Dialog dialog = alertBuilder.create();
+            dialog.show();
+
 
         }
 
@@ -142,7 +159,8 @@ public class UserActivity extends AppCompatActivity {
                     }
                 }).create().show();
 
-       // firebaseAuth.signOut();
+        firebaseAuth.signOut();
     }
+
 
 }

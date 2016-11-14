@@ -12,7 +12,6 @@ package inc.fimp;
  */
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -39,8 +38,6 @@ public class JoystickActivity extends AppCompatActivity {
 
     JoyStickClass leftJoystick;
     JoyStickClass rightJoystick;
-    SQLiteDatabase sql;
-    JoystickDB db;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +94,6 @@ public class JoystickActivity extends AppCompatActivity {
 
                     servor1Value = leftJoystick.getX(); //Value for servor1Value to be sent to database
                     servor2Value = leftJoystick.getY(); //Value for servor2Value to be sent to database
-                    addDB();
 
                     textView1.setText(getString(R.string.servor1) + servor1Value);
                     textView2.setText(getString(R.string.servor2) + servor2Value);
@@ -117,7 +113,6 @@ public class JoystickActivity extends AppCompatActivity {
 
                     servor3Value = rightJoystick.getX(); //Value for servor3Value to be sent to database
                     servor4Value = rightJoystick.getY(); //Value for servor4Value to be sent to database
-                    addDB();
 
                     textView3.setText(getString(R.string.servor3) + servor3Value);
                     textView4.setText(getString(R.string.servor4)+ servor4Value);
@@ -152,10 +147,6 @@ public class JoystickActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-        if(res_id==R.id.action_camera)
-        {
-            startActivity(new Intent(JoystickActivity.this, CamActivity.class));
-        }
         if(res_id==R.id.action_about)
         {
             startActivity(new Intent(this, AboutUs.class));
@@ -175,11 +166,5 @@ public class JoystickActivity extends AppCompatActivity {
 
 
         return true;
-    }
-
-    public void addDB(){
-        db = new JoystickDB(this);
-        sql = db.getWritableDatabase();
-        db.putInformation(sql, servor1Value, servor2Value, servor3Value, servor4Value);
     }
 }
