@@ -49,14 +49,14 @@ public class JoystickActivity extends AppCompatActivity {
 
         rightJoystick = new JoyStickClass(getApplicationContext()
                 , layout_joystick2, R.drawable.image_button);
-
+//created leftstick
         leftJoystick.setStickSize(150, 150);
         leftJoystick.setLayoutAlpha(150);
         leftJoystick.setStickAlpha(100);
         leftJoystick.setOffset(90);
         leftJoystick.setMinimumDistance(50);
 
-
+//created rightstick
         rightJoystick.setStickSize(150, 150);
         rightJoystick.setLayoutAlpha(150);
         rightJoystick.setStickAlpha(100);
