@@ -1,4 +1,15 @@
 package inc.fimp;
+/***
+ * Developers: Tanav Sharma
+ *             Alay Lad
+ *             Hennok Tadesse
+ *
+ * Team Name: The A Team
+ * Project Name: FIMP
+ * Prof Name: Haki Sharifi
+ * Course Code: CENG 319
+ */
+
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -86,13 +97,6 @@ public class JoyStickClass {
         }
     }
 
-    public int[] getPosition() {
-        if(distance > min_distance && touch_state) {
-            return new int[] { position_x, position_y };
-        }
-        return new int[] { 0, 0 };
-    }
-
     public int getX() {
         if(distance > min_distance && touch_state) {
             return position_x;
@@ -107,76 +111,12 @@ public class JoyStickClass {
         return 0;
     }
 
-    public float getAngle() {
-        if(distance > min_distance && touch_state) {
-            return angle;
-        }
-        return 0;
-    }
-
-    public float getDistance() {
-        if(distance > min_distance && touch_state) {
-            return distance;
-        }
-        return 0;
-    }
-
     public void setMinimumDistance(int minDistance) {
         min_distance = minDistance;
     }
 
-    public int getMinimumDistance() {
-        return min_distance;
-    }
-
-    public int get8Direction() {
-        if(distance > min_distance && touch_state) {
-            if(angle >= 247.5 && angle < 292.5 ) {
-                return STICK_UP;
-            } else if(angle >= 292.5 && angle < 337.5 ) {
-                return STICK_UPRIGHT;
-            } else if(angle >= 337.5 || angle < 22.5 ) {
-                return STICK_RIGHT;
-            } else if(angle >= 22.5 && angle < 67.5 ) {
-                return STICK_DOWNRIGHT;
-            } else if(angle >= 67.5 && angle < 112.5 ) {
-                return STICK_DOWN;
-            } else if(angle >= 112.5 && angle < 157.5 ) {
-                return STICK_DOWNLEFT;
-            } else if(angle >= 157.5 && angle < 202.5 ) {
-                return STICK_LEFT;
-            } else if(angle >= 202.5 && angle < 247.5 ) {
-                return STICK_UPLEFT;
-            }
-        } else if(distance <= min_distance && touch_state) {
-            return STICK_NONE;
-        }
-        return 0;
-    }
-
-    public int get4Direction() {
-        if(distance > min_distance && touch_state) {
-            if(angle >= 225 && angle < 315 ) {
-                return STICK_UP;
-            } else if(angle >= 315 || angle < 45 ) {
-                return STICK_RIGHT;
-            } else if(angle >= 45 && angle < 135 ) {
-                return STICK_DOWN;
-            } else if(angle >= 135 && angle < 225 ) {
-                return STICK_LEFT;
-            }
-        } else if(distance <= min_distance && touch_state) {
-            return STICK_NONE;
-        }
-        return 0;
-    }
-
     public void setOffset(int offset) {
         OFFSET = offset;
-    }
-
-    public int getOffset() {
-        return OFFSET;
     }
 
     public void setStickAlpha(int alpha) {
@@ -184,54 +124,15 @@ public class JoyStickClass {
         paint.setAlpha(alpha);
     }
 
-    public int getStickAlpha() {
-        return STICK_ALPHA;
-    }
-
     public void setLayoutAlpha(int alpha) {
         LAYOUT_ALPHA = alpha;
         mLayout.getBackground().setAlpha(alpha);
-    }
-
-    public int getLayoutAlpha() {
-        return LAYOUT_ALPHA;
     }
 
     public void setStickSize(int width, int height) {
         stick = Bitmap.createScaledBitmap(stick, width, height, false);
         stick_width = stick.getWidth();
         stick_height = stick.getHeight();
-    }
-
-    public void setStickWidth(int width) {
-        stick = Bitmap.createScaledBitmap(stick, width, stick_height, false);
-        stick_width = stick.getWidth();
-    }
-
-    public void setStickHeight(int height) {
-        stick = Bitmap.createScaledBitmap(stick, stick_width, height, false);
-        stick_height = stick.getHeight();
-    }
-
-    public int getStickWidth() {
-        return stick_width;
-    }
-
-    public int getStickHeight() {
-        return stick_height;
-    }
-
-    public void setLayoutSize(int width, int height) {
-        params.width = width;
-        params.height = height;
-    }
-
-    public int getLayoutWidth() {
-        return params.width;
-    }
-
-    public int getLayoutHeight() {
-        return params.height;
     }
 
     private double cal_angle(float x, float y) {

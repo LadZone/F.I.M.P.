@@ -3,17 +3,17 @@
      xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
     <item
-        android:id="@+id/action_settings"
-        android:title="Controller"
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
         app:showAsAction="never"
         />
 
     <item
-        android:id="@+id/action_contact"
-        android:title="Camera"
+        android:id="@+id/action_bio"
+        android:title="@string/update_bio"
         app:showAsAction="never"
         />
+
 
 </menu>

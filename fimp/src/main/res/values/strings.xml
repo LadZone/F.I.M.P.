@@ -3,47 +3,57 @@
 
     <!-- Toolbar String Values -->
     <string name="settings_tool">Settings</string>
-    <string name="options_tools">Contact Us</string>
-
-    <!-- Main Activity String values -->
-    <string name="add_arm">Add an arm</string>
-
-    <!-- Fragment string values -->
-    <string name="cam_ip">Enter the IP address of your camera</string>
-    <string name="arm_nm">Pick a name you would like to call your arm</string>
-    <string name="arm_cl">Pick a color to represent your arm</string>
-
-    <!-- String values for action bars -->
+    <string name="options_tools">About Us</string>
     <string name="profile">F.I.M.P.</string>
+    <string name="logout">Logout</string>
+    <string name="update_bio">Update Bio</string>
+    <string name="home">Home</string>
 
     <!-- String values for Register Screen -->
-    <string name="fname">Full Name</string>
-    <string name="uname">User Name</string>
     <string name="email">Email</string>
     <string name="pass">Password</string>
-    <string name="cnfrmpass">Confirm Password</string>
     <string name="register">Register User</string>
     <string name="logAct">Already a user? Login Here!</string>
-    <string name="noMatch">Passwords do not match, please try again.</string>
     <string name="error">An error occured! Please check your fields again.</string>
-    <string name="welcome">Bio</string>
-    <string name="userBio"></string>
-
-    <string name="emptStr"></string>
-
+    <string name="registeringBAR">Registering...</string>
+    <string name="regiError"> Registration Error </string>
+    <string name="requError"> Please meet the following requirements: </string>
+    <string name="oneReq"> -> User must not already exist.</string>
+    <string name="twoReq"> -> Password must be atleast 4-10 alphanumeric length</string>
+    <string name="okButton"> Ok, i will try agian! </string>
 
     <!--String values for Login -->
     <string name="login">Login</string>
     <string name="regAct">Not a user? Register Here!</string>
     <string name="noExist">Sorry, user does not seem to exist in our entries!</string>
+    <string name="logingIn">Loging In...</string>
+
+    <!-- String Values for UserActivity -->
+    <string name="Bio">Bio</string>
+
+    <string name="joystick">JOYSTICK</string>
+    <string name="camera">CAMERA</string>
+
+    <!-- String Values for CamActivity -->
+    <string name="connect">Connect</string>
+
+    <!-- String Values for AboutUs Activity-->
+    <string name="version">Version: Beta 1.0</string>
+    <string name="Founders">Tanav Sharma, Alay Lad, Hennok Tadesse</string>
 
     <!-- Strings for Joystick -->
     <string name="claw_open">Claw Open</string>
     <string name="claw_close">Claw Close</string>
-    <string name="servor1">Servor1: </string>
-    <string name="servor2">Servor2: </string>
-    <string name="servor3">Servor3: </string>
-    <string name="servor4">Servor4: </string>
+    <string name="servor1">Servo1: </string>
+    <string name="servor2">Servo2: </string>
+    <string name="servor3">Servo3: </string>
+    <string name="servor4">Servo4: </string>
+
+    <!-- Random String Values -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+
 
 
 </resources>
