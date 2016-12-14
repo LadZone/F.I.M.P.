@@ -3,13 +3,6 @@
      xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/options_tools"
-        app:showAsAction="never"
-        />
-
     <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
@@ -17,8 +10,9 @@
         />
 
     <item
-        android:id="@+id/action_update_bio"
+        android:id="@+id/action_bio"
         android:title="@string/update_bio"
+        app:showAsAction="never"
         />
 
 

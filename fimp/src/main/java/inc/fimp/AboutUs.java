@@ -49,10 +49,6 @@ public class AboutUs extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-        if(res_id==R.id.action_about)
-        {
-            startActivity(new Intent(this, AboutUs.class));
-        }
 
         if(res_id==R.id.action_logout)
         {

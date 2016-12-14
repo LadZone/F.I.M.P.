@@ -16,8 +16,13 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,16 +32,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class UserActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+
 
     private FirebaseAuth firebaseAuth;
+
+
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mToggle;
+
+    private EditText userInput;
 
 
 
@@ -44,6 +60,23 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, R.string.open, R.string.close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+       // mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+      //  mToggle = new ActionBarDrawerToggle(this, mDrawerLayout,R.string.open, R.string.close);
+
+       // mDrawerLayout.addDrawerListener(mToggle);
+       // mToggle.syncState();
 
         firebaseAuth = FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser()==null){
@@ -51,7 +84,7 @@ public class UserActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,6 +115,7 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
+
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -91,14 +125,13 @@ public class UserActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-        if(res_id==R.id.action_about)
-        {
-            startActivity(new Intent(this, AboutUs.class));
-        }
 
-        if(res_id==R.id.action_logout)
+
+        if(res_id==R.id.nav_logout)
         {
             firebaseAuth.signOut();
             finish();
@@ -106,10 +139,33 @@ public class UserActivity extends AppCompatActivity {
 
         }
 
-        if(res_id==R.id.action_update_bio)
+
+        if(res_id==android.R.id.home){ // linked with getSupportActionBar().setDisplayHomeAsUpEnabled();
+            onBackPressed();
+        }
+
+
+        return true;
+    }
+
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int res_id = item.getItemId();
+
+
+        if(res_id==R.id.nav_logout)
         {
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(UserActivity.this, LoginActivity.class));
+
+        }
+
+        if(res_id==R.id.nav_bio){
             //will alow the user to add a bio
-            final  TextView userinputtext = (TextView) findViewById(R.id.userinputtext);
+            final TextView userinputtext = (TextView) findViewById(R.id.userinputtext);
+
             View view = (LayoutInflater.from(UserActivity.this)).inflate(R.layout.user_input, null);
 
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(UserActivity.this);
@@ -128,17 +184,42 @@ public class UserActivity extends AppCompatActivity {
             Dialog dialog = alertBuilder.create();
             dialog.show();
 
-
         }
 
-        if(res_id==android.R.id.home){ // linked with getSupportActionBar().setDisplayHomeAsUpEnabled();
+        if(res_id==R.id.nav_camera){
+            startActivity(new Intent(UserActivity.this, CamActivity.class));
+            Toast.makeText(UserActivity.this, "Camera", Toast.LENGTH_SHORT).show();
+        }
+
+       else if(res_id==R.id.nav_joystick){
+            startActivity(new Intent(UserActivity.this, JoystickActivity.class));
+            Toast.makeText(UserActivity.this, "Joystick", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(res_id==R.id.nav_home){
+            startActivity(new Intent(UserActivity.this, UserActivity.class));
+           Toast.makeText(UserActivity.this, "Home", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(res_id==R.id.nav_logout){
             onBackPressed();
         }
 
+        else  if(res_id==R.id.nav_AboutUs){
+            startActivity(new Intent(UserActivity.this, AboutUs.class));
+            Toast.makeText(UserActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+        }
 
+        else  if(res_id==android.R.id.home){ // linked with getSupportActionBar().setDisplayHomeAsUpEnabled();
+            firebaseAuth.signOut();
+        }
+
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     /**
      * This function is responsible for asking the user to confirm
@@ -161,6 +242,8 @@ public class UserActivity extends AppCompatActivity {
 
         firebaseAuth.signOut();
     }
+
+
 
 
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_home"
+        android:icon="@drawable/ic_action_home"
+        android:title="@string/home"/>
+
+    <item android:id="@+id/nav_camera"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/camera"/>
+
+    <item android:id="@+id/nav_joystick"
+        android:icon="@drawable/ic_action_joystick"
+        android:title="@string/joystick"/>
+
+    <item android:id="@+id/nav_bio"
+        android:icon="@drawable/ic_action_update"
+        android:title="@string/update_bio"/>
+
+
+
+    <item android:title="Other">
+        <menu>
+            <item android:id="@+id/nav_logout"
+                android:title="@string/logout"/>
+
+            <item android:id="@+id/nav_AboutUs"
+                android:title="@string/options_tools"/>
+
+            <item android:id="@+id/nav_PrivacyPolicy"
+                android:title="Privacy Policy"/>
+
+
+
+        </menu>
+    </item>
+</menu>
