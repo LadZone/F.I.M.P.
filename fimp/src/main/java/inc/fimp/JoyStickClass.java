@@ -1,4 +1,15 @@
 package inc.fimp;
+/***
+ * Developers: Tanav Sharma
+ *             Alay Lad
+ *             Hennok Tadesse
+ *
+ * Team Name: The A Team
+ * Project Name: FIMP
+ * Prof Name: Haki Sharifi
+ * Course Code: CENG 319
+ */
+
 
 import android.content.Context;
 import android.graphics.Bitmap;

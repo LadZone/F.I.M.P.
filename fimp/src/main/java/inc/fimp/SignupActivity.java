@@ -1,9 +1,22 @@
 package inc.fimp;
 
+/***
+ * Developers: Tanav Sharma
+ *             Alay Lad
+ *             Hennok Tadesse
+ *
+ * Team Name: The A Team
+ * Project Name: FIMP
+ * Prof Name: Haki Sharifi
+ * Course Code: CENG 319
+ */
+
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -23,8 +36,7 @@ import butterknife.Bind;
 
 public class SignupActivity extends AppCompatActivity
 {
-    //DatabaseHelper helper = new DatabaseHelper(this);
-    private static final String TAG = "SignupActivity";
+
 
 
     @Bind(R.id.input_email) EditText _emailText;
@@ -70,8 +82,24 @@ public class SignupActivity extends AppCompatActivity
         String password = _passwordText.getText().toString();
 
         if (!validate()) {
-            CharSequence error = getApplicationContext().getString(R.string.error);
-            Toast.makeText(SignupActivity.this, error, Toast.LENGTH_SHORT).show();
+            CharSequence okButton = getApplicationContext().getString(R.string.okButton);
+            CharSequence regiError = getApplicationContext().getString(R.string.regiError);
+            CharSequence requError = getApplicationContext().getString(R.string.requError);
+            CharSequence oneReq = getApplicationContext().getString(R.string.oneReq);
+            CharSequence twoReq = getApplicationContext().getString(R.string.twoReq);
+
+            final AlertDialog.Builder regError = new AlertDialog.Builder(SignupActivity.this);
+                    regError.setTitle(regiError);
+                    regError.setMessage(requError + "\n\n" + oneReq +"\n\n" + twoReq);
+                    regError.setPositiveButton(okButton, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //do nothing
+                        }
+                    }).create().show();
+
+
+            //Toast.makeText(SignupActivity.this, error, Toast.LENGTH_SHORT).show();
             return;
         }else{
 
@@ -89,9 +117,27 @@ public class SignupActivity extends AppCompatActivity
                                 finish();
                                 Intent i = new Intent(SignupActivity.this, UserActivity.class);
                                 startActivity(i);
-                                Toast.makeText(SignupActivity.this, "Test: Registration Successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                             }else{
-                                Toast.makeText(SignupActivity.this, "Test: Registration Unsccessful", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                CharSequence okButton = getApplicationContext().getString(R.string.okButton);
+                                CharSequence regiError = getApplicationContext().getString(R.string.regiError);
+                                CharSequence requError = getApplicationContext().getString(R.string.requError);
+                                CharSequence oneReq = getApplicationContext().getString(R.string.oneReq);
+                                CharSequence twoReq = getApplicationContext().getString(R.string.twoReq);
+
+                                final AlertDialog.Builder regError = new AlertDialog.Builder(SignupActivity.this);
+                                regError.setTitle(regiError);
+                                regError.setMessage(requError + "\n\n" + oneReq +"\n\n" + twoReq);
+                                regError.setPositiveButton(okButton, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //do nothing
+                                    }
+                                }).create().show();
+
+
+                                //Toast.makeText(SignupActivity.this, "Test: Registration Unsccessful", Toast.LENGTH_SHORT).show();
                             }
 
                         }

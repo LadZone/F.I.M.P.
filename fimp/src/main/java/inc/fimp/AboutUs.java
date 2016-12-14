@@ -1,5 +1,16 @@
 package inc.fimp;
 
+/***
+ * Developers: Tanav Sharma
+ *             Alay Lad
+ *             Hennok Tadesse
+ *
+ * Team Name: The A Team
+ * Project Name: FIMP
+ * Prof Name: Haki Sharifi
+ * Course Code: CENG 319
+ */
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,10 +49,6 @@ public class AboutUs extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item){
         int res_id = item.getItemId();
-        if(res_id==R.id.action_about)
-        {
-            startActivity(new Intent(this, AboutUs.class));
-        }
 
         if(res_id==R.id.action_logout)
         {

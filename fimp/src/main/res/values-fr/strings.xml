@@ -24,7 +24,8 @@
     <string name="logingIn">Connexion ...</string>
 
     <!-- String Values for UserActivity -->
-    <string name="welcome">Welcome</string>
+    <string name="Bio">Bio</string>
+    <string name="update_bio">Update Bio</string>
     <string name="joystick">JOYSTICK</string>
     <string name="camera">CAMERA</string>
 
@@ -36,5 +37,8 @@
     <string name="servor3">Servor3: </string>
     <string name="servor4">Servor4: </string>
 
+    <string name="connect">Relier</string>
+    <string name="version">Version: Beta 1.0</string>
+    <string name="Founders">Tanav Sharma, Alay Lad, Hennok Tadesse</string>
 
 </resources>

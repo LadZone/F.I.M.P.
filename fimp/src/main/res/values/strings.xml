@@ -6,6 +6,8 @@
     <string name="options_tools">About Us</string>
     <string name="profile">F.I.M.P.</string>
     <string name="logout">Logout</string>
+    <string name="update_bio">Update Bio</string>
+    <string name="home">Home</string>
 
     <!-- String values for Register Screen -->
     <string name="email">Email</string>
@@ -14,6 +16,11 @@
     <string name="logAct">Already a user? Login Here!</string>
     <string name="error">An error occured! Please check your fields again.</string>
     <string name="registeringBAR">Registering...</string>
+    <string name="regiError"> Registration Error </string>
+    <string name="requError"> Please meet the following requirements: </string>
+    <string name="oneReq"> -> User must not already exist.</string>
+    <string name="twoReq"> -> Password must be atleast 4-10 alphanumeric length</string>
+    <string name="okButton"> Ok, i will try agian! </string>
 
     <!--String values for Login -->
     <string name="login">Login</string>
@@ -22,9 +29,13 @@
     <string name="logingIn">Loging In...</string>
 
     <!-- String Values for UserActivity -->
-    <string name="welcome">Welcome</string>
+    <string name="Bio">Bio</string>
+
     <string name="joystick">JOYSTICK</string>
     <string name="camera">CAMERA</string>
+
+    <!-- String Values for CamActivity -->
+    <string name="connect">Connect</string>
 
     <!-- String Values for AboutUs Activity-->
     <string name="version">Version: Beta 1.0</string>
@@ -37,6 +48,12 @@
     <string name="servor2">Servor2: </string>
     <string name="servor3">Servor3: </string>
     <string name="servor4">Servor4: </string>
+
+    <!-- Random String Values -->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+
 
 
 </resources>

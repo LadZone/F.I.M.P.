@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="inc.fimp">
+    package="inc.fimp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,21 +9,33 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.Dark">
+            android:theme="@style/AppTheme.Dark" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserActivity" android:finishOnCloseSystemDialogs="true" />
-        <activity android:name=".SignupActivity" android:theme="@style/AppTheme.Dark" />
-        <activity android:name=".JoystickActivity" android:theme="@style/AppTheme.Dark" android:screenOrientation="landscape"></activity>
-        <activity android:name=".AboutUs" android:theme="@style/AppTheme.Dark"></activity>
+        <activity
+            android:name=".UserActivity"
+            android:finishOnCloseSystemDialogs="true" />
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".JoystickActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".AboutUs"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".CamActivity"
+            android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>
